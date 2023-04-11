@@ -3,7 +3,7 @@ use regex::Regex;
 use std::{fmt, io::Write};
 
 lazy_static! {
-    static ref MOVE_FORMAT: Regex = Regex::new(r"^[a-zA-Z]\d[a-zA-Z]\d$").unwrap();
+    static ref MOVE_FORMAT: Regex = Regex::new(r"^[a-hA-H]\d[a-hA-H]\d$").unwrap();
 }
 
 #[derive(Debug, Clone, Copy)]
