@@ -79,6 +79,12 @@ pub struct Board {
     turn: i16,
 }
 
+impl Default for Board {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Board {
     pub fn new() -> Self {
         INIT_BOARD
@@ -122,10 +128,10 @@ impl fmt::Display for Board {
             false => "White",
         };
 
-        write!(f, "┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n")?;
-        write!(f, "┃         CLI Chess        ┃\n")?;
-        write!(f, "┣━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n")?;
-        write!(f, "┃   a  b  c  d  e  f  g  h ┃\n")?;
+        writeln!(f, "┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓")?;
+        writeln!(f, "┃         CLI Chess        ┃")?;
+        writeln!(f, "┣━━━━━━━━━━━━━━━━━━━━━━━━━━┫")?;
+        writeln!(f, "┃   a  b  c  d  e  f  g  h ┃")?;
 
         let mut rank_num = 8;
         for rank in self.ranks.iter() {
@@ -136,10 +142,10 @@ impl fmt::Display for Board {
                 write!(f, "{} ", square)?;
             }
 
-            write!(f, "┃\n")?;
+            writeln!(f, "┃")?;
         }
 
-        write!(f, "┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n")?;
+        writeln!(f, "┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛")?;
         write!(f, "{} to play: ", player)?;
         match std::io::stdout().flush() {
             Err(_) => Err(std::fmt::Error),
